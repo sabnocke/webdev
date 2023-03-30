@@ -1,0 +1,16 @@
+.button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+.button-container button{
+    flex: 1;
+    justify-content: space-between;
+    max-width: 800px;
+}
+.body{
+    text-align: center;
+    font-weight: normal;
+}
