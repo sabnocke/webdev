@@ -8,40 +8,140 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT&family=Overpass+Mono:wght@300&family=Stoke:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="src/style.css">
-    <link rel="stylesheet" href="src/sidebars.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <title>Document</title>
-
+    <link rel="icon" href="icon/android-chrome-512x512.png" type="Image/x-icon">
 
 </head>
 <body>
+  <!--header start-->
     <div class="row">
-        
-            <header class="d-flex justify-content-center py-3">
-              <ul class="nav nav-underline">
-                <li class="nav-item"><a href="#" class="nav-link text-light" aria-current="page">Home</a></li>
-                <li class="nav-item"><a href="second.html" class="nav-link">Generic</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-              </ul>
-            </header>
+        <header class="d-flex justify-content-center py-3">
+          <ul class="nav nav-underline">
+            <li class="nav-item"><a href="#" class="nav-link text-light" aria-current="page">First</a></li>
+            <li class="nav-item"><a href="second.html" class="nav-link">Second</a></li>
+            <li class="nav-item"><a href="third.html" class="nav-link">Third</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">heh</a></li>
+            <li class="nav-item"><a href="#" class="nav-link disabled text-decoration-line-through">Good Stuff</a></li>
+          </ul>
+        </header>
+      </div>
+      <!--header end-->
+    <div class="d-flex justify-content-center mx-auto">
+        <h1 class="text-white stoke">Český hovězí guláš</h1>
+    </div>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-7">
+              <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Suroviny:</h5>
+                    <ul class="list-group">
+                      <li class="list-group-item">
+                        <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckBox">
+                        <label class="form-check-label stretched-link newheader" for="firstCheckBox">1 kg hovězího masa (ramena, plece nebo hřbet)</label>
+                      </li>
+                      <li class="list-group-item">
+                        <input type="checkbox" class="form-check-input me-1" id="secondCheckBox">
+                        <label for="secondCheckBox" class="form-check-label stretched-link newheader">2 cibule</label>
+                      </li>
+                      <li class="list-group-item">
+                        <input type="checkbox" class="form-check-input me-1" id="thirdCheckBox">
+                        <label for="thirdCheckBox" class="form-check-label stretched-link newheader">2 stroužky česneku</label>
+                      </li>
+                      <li class="list-group-item">
+                        <input type="checkbox" class="form-check-input me-1" id="fourthCheckBox">
+                        <label for="fourthCheckBox" class="form-check-label stretched-link newheader">2 lžíce sádla nebo oleje</label>
+                      </li>
+                      <li class="list-group-item">
+                        <input type="checkbox" class="form-check-input me-1" id="fifthCheckBox">
+                        <label for="fifthCheckBox" class="form-check-label stretched-link newheader">2 lžíce mleté sladké papriky</label>
+                      </li>
+                      <li class="list-group-item">
+                        <input type="checkbox" class="form-check-input me-1" id="sixthCheckBox">
+                        <label for="sixthCheckBox" class="form-check-label stretched-link newheader">1 lžička kmínu</label>
+                      </li>
+                      <li class="list-group-item">
+                        <input type="checkbox" class="form-check-input me-1" id="seventhCheckBox">
+                        <label for="seventhCheckBox" class="form-check-label stretched-link newheader">1 lžička majoránky</label>
+                      </li>
+                      <li class="list-group-item">
+                        <input type="checkbox" class="form-check-input me-1" id="eighthCheckBox">
+                        <label for="eighthCheckBox" class="form-check-label stretched-link newheader">1 lžička soli</label>
+                      </li>
+                      <li class="list-group-item">
+                        <input type="checkbox" class="form-check-input me-1" id="ninethCheckBox">
+                        <label for="ninethCheckBox" class="form-check-label stretched-link newheader">1/2 l vody</label>
+                      </li>
+                      <li class="list-group-item">
+                        <input type="checkbox" class="form-check-input me-1" id="tenthCheckBox">
+                        <label for="tenthCheckBox" class="form-check-label stretched-link newheader">2 lžíce hladké mouky</label>
+                      </li>
+                    </ul>
+                    </div>
+                </div>
+              </div>
+            </div>
           </div>
-        <div class="d-flex justify-content-center mx-auto">
-            <h1 class="text_color stoke">
-                Hello World 
-            </h1>
+          <hr>
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-md-7">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Postup:</h5>
+                      <ul class="list-group list-group-numbered">
+                          <li class="list-group-item newheader">Maso nakrájejte na menší kousky.</li>
+                          <li class="list-group-item newheader">Cibuli nakrájejte na drobné kostičky a česnek rozmačkejte.</li>
+                          <li class="list-group-item newheader">V hrnci rozehřejte sádlo nebo olej a osmahněte na něm cibuli a česnek do zlatova.</li>
+                          <li class="list-group-item newheader">Přidejte mletou sladkou papriku, kmín, majoránku a sůl a promíchejte.</li>
+                          <li class="list-group-item newheader">Přidejte maso a opečte ho ze všech stran do zlatova.</li>
+                          <li class="list-group-item newheader">Přidejte vodu, promíchejte a nechte vařit na středním ohni asi 1,5 až 2 hodiny, <br> &emsp;dokud maso nezměkne.</li>
+                          <li class="list-group-item newheader">Smíchejte hladkou mouku s trochou vody a přidejte do guláše. <br> &emsp;Nechte vařit dalších 10 až 15 minut, dokud se omáčka nezahustí.</li>
+                      </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            
+        <!--footer start-->
+        <div class="container">
+          <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+              <a href="https://getbootstrap.com/" target="_blank" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" fill="currentColor" class="bi bi-bootstrap-fill" viewBox="0 0 16 16">
+                  <path d="M6.375 7.125V4.658h1.78c.973 0 1.542.457 1.542 1.237 0 .802-.604 1.23-1.764 1.23H6.375zm0 3.762h1.898c1.184 0 1.81-.48 1.81-1.377 0-.885-.65-1.348-1.886-1.348H6.375v2.725z"/>
+                  <path d="M4.002 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4h-8zm1.06 12V3.545h3.399c1.587 0 2.543.809 2.543 2.11 0 .884-.65 1.675-1.483 1.816v.1c1.143.117 1.904.931 1.904 2.033 0 1.488-1.084 2.396-2.888 2.396H5.062z"/>
+                </svg>
+              </a>
+              <span class="mb-3 mb-md-0 text-muted">&copy; 2023 WebDevMaster, Inc</span>
+            </div>
+        
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+              <li class="ms-3"><a class="" href="https://github.com/sabnocke" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                </svg>
+              </a></li>
+              <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
+              <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
+            </ul>
+          </footer>
         </div>
-            <div class="fs-3 justify-content-center d-flex">
-                <p>Beautiful text</p>
-            </div>  
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <!--footer end-->
+        <script>
+          $('input[type=checkbox]').on('change', function() {
+            var checked = $(this).prop('checked');
+            var label = $('label[for=' + $(this).attr('id') + ']');
+            if (checked) {
+              label.addClass('text-decoration-line-through');
+            } else{
+              label.removeClass('text-decoration-line-through');
+            }
+          });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
 </body>
 </html>
