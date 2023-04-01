@@ -1,10 +1,8 @@
-// this does more than button fetching
-
 let entries = []; // holds every inputed entry
 // it works?!
 let checkedArray = []; // holds everything to be removed
 
-$("#submit").click(function () {
+$("#submit").click(function () { 
   let entry = $("#input").val();
   if (entry == "") {
     alert("Please enter something");
@@ -23,9 +21,6 @@ function displayEntries() {
   $("#output").empty();
   for (let i = 0; i < entries.length; i++) {
     let entry = entries[i];
-    if (entry == "nullHandler") {
-      continue;
-    }
     let html = `<li class="list-group-item">
             <input class="form-check-input me-1" type="checkbox" id="${i + 1}">
             <label class="form-check-label newheader" for="${
@@ -60,7 +55,7 @@ function removeEntries() {
 }
 
 function updateEntries() {
-  if (entries.length >= 0) /*might cause bugs!*/  {
+  if (entries.length >= 0)  {
     localStorage.setItem("entries", JSON.stringify(entries));
   }
   entries = JSON.parse(localStorage.getItem("entries"));
@@ -70,7 +65,4 @@ function updateEntries() {
 $(document).ready(function () {
   entries = JSON.parse(localStorage.getItem("entries"));
   displayEntries();
-  
 });
-
-
