@@ -1,29 +1,80 @@
-.stoke{
-    font-family: 'Stoke', serif;
-    font-size: 80px;
+:root {
+  --imperial-red: #7e191b !important; /*7E191B, 960018*/
+  --faded: #4a646c !important;
 }
 
-.overpass{
-    font-family: 'Overpass Mono', monospace;
-    font-size: 15px;
+.stoke {
+  font-family: "Stoke", serif;
+  font-size: 80px;
 }
 
-.newheader{
-    font-size: 18px;
-    font-family: 'Old Standard TT', serif;
+.overpass {
+  font-family: "Overpass Mono", monospace;
+  font-size: 15px;
 }
 
-hr{
+.newheader {
+  font-size: 18px;
+  font-family: "Old Standard TT", serif;
+}
+
+hr {
   visibility: hidden;
 }
 
-.myPicture{
+.myPicture {
   /* used to handle picture size in "second"*/
   width: 500px;
   height: 500px;
 }
 
-#strikethrough-text.strikethrough{
-  /* used by JQuery on change of checkbox in "index" */
-  text-decoration: line-through;
+input,
+textarea {
+  border-color: #4a646c !important;
+  color: #4a646c;
+}
+
+.card {
+  border-color: #4a646c !important;
+}
+.list-group-item {
+  border-color: #4a646c !important;
+}
+.info {
+  /* Bootstrap original color */
+  color: #5bc0de;
+}
+.secondary {
+  /* Bootstrap original color */
+  color: #9fa6b2;
+}
+
+.faded {
+  /* Deep Space Sparkle */
+  color: #4a646c !important;
+}
+
+.btn-cst-remove {
+  --bs-btn-font-weight: 600;
+  --bs-btn-color: var(--imperial-red);
+  --bs-btn-bg: var(--bd-violet-bg);
+  --bs-btn-border-color: var(--imperial-red);
+  --bs-btn-hover-color: var(--bs-white);
+  --bs-btn-hover-bg: var(--imperial-red);
+  --bs-btn-hover-border-color: var(--imperial-red);
+  --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+}
+
+.btn-cst-submit {
+  --bs-btn-color: var(--faded);
+  --bs-btn-bg: var(--bd-violet-bg);
+  --bs-btn-border-color: var(--faded);
+  --bs-btn-hover-color: var(--bs-white);
+  --bs-btn-hover-bg: var(--faded);
+  --bs-btn-hover-border-color: var(--faded);
+}
+
+.form-control:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0rem #4a646c;
 }
