@@ -1,7 +1,7 @@
 // this does more than button fetching
 
-let entries = ["nullHandler"]; // holds every inputed entry
-// nullHandler = bypasses problem with array.length being 'null'
+let entries = []; // holds every inputed entry
+// it works?!
 let checkedArray = []; // holds everything to be removed
 
 $("#submit").click(function () {
@@ -12,7 +12,11 @@ $("#submit").click(function () {
     entries.push(entry);
     displayEntries();
     $("#input").val("");
+    if (entries.length > 0) {
+      localStorage.setItem("entries", JSON.stringify(entries));
+    }
   }
+  
 });
 
 function displayEntries() {
@@ -38,6 +42,7 @@ $("#remove_button").on("click", function () {
     $("input:checked").each(function (index, element) {
       checkedArray.push($(element).siblings("label").text());
     });
+    console.log(checkedArray);
   } else {
     alert("Please select an item to remove.");
   }
@@ -49,12 +54,13 @@ function removeEntries() {
     let index = entries.indexOf(checkedArray[i]);
     entries.splice(index, 1);
   }
+  console.log(entries);
   updateEntries();
   checkedArray = [];
 }
 
 function updateEntries() {
-  if (entries.length > 0) {
+  if (entries.length >= 0) /*might cause bugs!*/  {
     localStorage.setItem("entries", JSON.stringify(entries));
   }
   entries = JSON.parse(localStorage.getItem("entries"));
@@ -62,19 +68,9 @@ function updateEntries() {
 }
 
 $(document).ready(function () {
-  updateEntries();
+  entries = JSON.parse(localStorage.getItem("entries"));
+  displayEntries();
+  
 });
 
-/*
-    ----------------------------
-    different script
-    ----------------------------
-*/
 
-$(document).on("click", ":checkbox", function () {
-  if ($(this).is(":checked")) {
-    $(this).siblings("label").addClass("text-decoration-line-through");
-  } else {
-    $(this).siblings("label").removeClass("text-decoration-line-through");
-  }
-});
