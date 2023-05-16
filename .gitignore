@@ -45,3 +45,4 @@ yarn.lock
 *.yml
 .vscode
 env
+*.xml
