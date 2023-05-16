@@ -1,84 +1,84 @@
 :root {
-  --imperial-red: #7e191b !important; /*7E191B, 960018*/
-  --faded: #4a646c !important;
+    --imperial-red: #7e191b !important; /*7E191B, 960018*/
+    --faded: #4a646c !important;
 }
 
 .stoke {
-  font-family: "Stoke", serif;
-  font-size: 80px;
+    font-family: "Stoke", serif;
+    font-size: 80px;
 }
 
 .overpass {
-  font-family: "Overpass Mono", monospace;
-  font-size: 15px;
+    font-family: "Overpass Mono", monospace;
+    font-size: 15px;
 }
 
-.newheader {
-  font-size: 18px;
-  font-family: "Old Standard TT", serif;
+.newHeader {
+    font-size: 18px;
+    font-family: "Old Standard TT", serif;
 }
 
 hr {
-  visibility: hidden;
+    visibility: hidden;
 }
 
 .myPicture {
-  /* used to handle picture size in "second"*/
-  width: 500px;
-  height: 500px;
+    /* used to handle picture size in "second"*/
+    width: 500px;
+    height: 500px;
 }
 
 input,
 textarea {
-  border-color: #4a646c !important;
-  color: #4a646c;
+    border-color: #4a646c !important;
+    color: #4a646c;
 }
 
 .card {
-  border-color: #4a646c !important;
+    border-color: #4a646c !important;
 }
+
 .list-group-item {
-  border-color: #4a646c !important;
+    border-color: #4a646c !important;
 }
+
 .info {
-  /* Bootstrap original color */
-  color: #5bc0de;
+    /* Bootstrap original color */
+    color: #5bc0de;
 }
+
 .secondary {
-  /* Bootstrap original color */
-  color: #9fa6b2;
+    /* Bootstrap original color */
+    color: #9fa6b2;
 }
 
 .faded {
-  /* Deep Space Sparkle */
-  color: #4a646c !important;
+    /* Deep Space Sparkle */
+    color: #4a646c !important;
 }
 
 .btn-cst-remove {
-  --bs-btn-font-weight: 600;
-  --bs-btn-color: var(--imperial-red);
-  --bs-btn-bg: var(--bd-violet-bg);
-  --bs-btn-border-color: var(--imperial-red);
-  --bs-btn-hover-color: var(--bs-white);
-  --bs-btn-hover-bg: var(--imperial-red);
-  --bs-btn-hover-border-color: var(--imperial-red);
-  --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+    --bs-btn-font-weight: 600;
+    --bs-btn-color: var(--imperial-red);
+    --bs-btn-border-color: var(--imperial-red);
+    --bs-btn-hover-color: var(--bs-white);
+    --bs-btn-hover-bg: var(--imperial-red);
+    --bs-btn-hover-border-color: var(--imperial-red);
 }
 
 .btn-cst-submit {
-  --bs-btn-color: var(--faded);
-  --bs-btn-bg: var(--bd-violet-bg);
-  --bs-btn-border-color: var(--faded);
-  --bs-btn-hover-color: var(--bs-white);
-  --bs-btn-hover-bg: var(--faded);
-  --bs-btn-hover-border-color: var(--faded);
+    --bs-btn-color: var(--faded);
+    --bs-btn-border-color: var(--faded);
+    --bs-btn-hover-color: var(--bs-white);
+    --bs-btn-hover-bg: var(--faded);
+    --bs-btn-hover-border-color: var(--faded);
 }
 
 .form-control:focus {
-  border-color: #28a745;
-  box-shadow: 0 0 0 0rem #4a646c;
+    border-color: #28a745;
+    box-shadow: 0 0 0 0 #4a646c;
 }
 
 h1 {
-  text-align: center;
+    text-align: center;
 }
