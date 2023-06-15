@@ -46,3 +46,5 @@ yarn.lock
 .vscode
 env
 *.xml
+ang-project/frontend/src/assets/
+NewProject
