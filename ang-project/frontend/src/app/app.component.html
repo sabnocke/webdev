@@ -1,8 +1,6 @@
-<body>
-  <p class="text-center text-white">Hello</p>
-  <section class="content placement">
+<section class="content placement">
+  <div [class.blur-background]="isOpen">
     <app-navbar></app-navbar>
     <app-calendar></app-calendar>
-    <app-modal></app-modal>
-  </section>
-</body>
+  </div>
+</section>

@@ -1,54 +1,20 @@
-<!-- <dialog #diag>
-  <div class="login-box">
-    <form>
-      <div class="user-box">
-        <input type="text" name="" required="" />
-        <label>Username</label>
-      </div>
-      <div class="user-box">
-        <input type="password" name="" required="" />
-        <label>Password</label>
-      </div>
-      <a href="#">
-        SEND
-        <span></span>
-      </a>
-    </form>
-  </div>
-</dialog> -->
-
-<!-- <app-icon
-  class="btnMod"
-  [text]="placement_value"
-  [iconName]="test"
-  (click)="diag.show()"
-></app-icon> -->
-
-<dialog #dia>
-  <div class="login-box">
-    <form>
-      <div class="user-box">
-        <input type="text" name="" required="" />
-        <label>Username</label>
-      </div>
-      <div class="user-box">
-        <input type="password" name="" required="" />
-        <label>Password</label>
-      </div>
-      <a href="#">
-        SEND
-        <span></span>
-      </a>
-    </form>
+<dialog id="diag">
+  <div class="backdrop">
+    <div class="modal">
+      <form>
+        <div class="user-box">
+          <input type="text" name="" required="" />
+          <label>Username</label>
+        </div>
+        <div class="user-box">
+          <input type="password" name="" required="" />
+          <label>Password</label>
+        </div>
+        <a>
+          SEND
+          <span></span>
+        </a>
+      </form>
+    </div>
   </div>
 </dialog>
-<app-icon
-  class="btnMod"
-  [text]="placement_value"
-  [iconName]="test"
-  (click)="dia.show()"
-></app-icon>
-<dialog #dg id="tt">
-  <h1>Random text</h1>
-</dialog>
-<button (click)="dg.show()" id="btnattr">BUTTON</button>

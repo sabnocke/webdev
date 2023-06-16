@@ -48,3 +48,12 @@ env
 *.xml
 ang-project/frontend/src/assets/
 NewProject
+.idea/**/*
+ang-dialog-tomfoolery
+project/templates/home.html
+project/templates/calendar.html
+project/static/static.css
+project/static/calendar.mjs
+project/static/calendar.js
+project/templates/home.html
+ttDb.db

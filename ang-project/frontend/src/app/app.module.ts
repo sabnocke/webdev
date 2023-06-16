@@ -4,6 +4,8 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatIconModule } from '@angular/material/icon';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { MatDialogModule } from '@angular/material/dialog';
+import { CalendarComponent } from './calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     AppComponent,
     MatIconModule,
     FullCalendarModule,
+    MatDialogModule,
+    CalendarComponent,
   ],
   providers: [],
 })

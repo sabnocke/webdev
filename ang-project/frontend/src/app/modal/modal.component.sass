@@ -11,17 +11,18 @@
     left: 50%
     position: absolute
 
-.login-box
+.modal
     position: absolute
-    top: 200px
-    left: 50%
+    top: 0px
+    left: 0px
     width: 400px
     padding: 40px
-    transform: translate(-50%, -50%)
+    transform: translate(0, 0)
     background: rgba(24, 20, 20, 0.987)
     box-sizing: border-box
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6)
     border-radius: 10px
+    z-index: 9999
     .user-box
         position: relative
         input
@@ -66,8 +67,8 @@
             position: absolute
             display: block
 
-.login-box .user-box input:focus ~ label,
-.login-box .user-box input:valid ~ label
+.modal .user-box input:focus ~ label,
+.modal .user-box input:valid ~ label
     top: -20px
     left: 0
     color: #bdb8b8
@@ -80,7 +81,7 @@
     100%
         left: 100%
 
-.login-box
+.modal
     a
         span
             &:nth-child(1)
@@ -92,4 +93,6 @@
                 animation: btn-anim1 2s linear infinite
 
 dialog
+    width: 400px
+    height: 400px
     background-color: rgba(0, 0, 0, 0)

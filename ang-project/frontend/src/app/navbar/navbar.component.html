@@ -3,8 +3,13 @@
 >
   <app-icon [iconName]="search" [text]="searchText"></app-icon>
   <app-icon [iconName]="settings" [text]="searchText"></app-icon>
-  <app-icon [iconName]="add" [text]="searchText"></app-icon>
+  <app-icon
+    [iconName]="add"
+    [text]="addTooltipText"
+    (click)="openDialog()"
+  ></app-icon>
   <app-icon [iconName]="delete" [text]="searchText"></app-icon>
   <app-icon [iconName]="publish" [text]="searchText"></app-icon>
 </div>
+<app-modal></app-modal>
 <!-- search settings add delete publish -->
