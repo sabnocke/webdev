@@ -57,3 +57,4 @@ project/static/calendar.mjs
 project/static/calendar.js
 project/templates/home.html
 ttDb.db
+.idea/jsLibraryMappings.xml

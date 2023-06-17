@@ -1,7 +1,8 @@
 <dialog id="diag">
   <div class="backdrop">
-    <div class="modal">
+    <div class="uqModal">
       <form>
+        <!-- input -->
         <div class="user-box">
           <input type="text" name="" required="" />
           <label>Username</label>
@@ -10,10 +11,51 @@
           <input type="password" name="" required="" />
           <label>Password</label>
         </div>
-        <a>
-          SEND
-          <span></span>
-        </a>
+        <!-- input -->
+        <!-- button -->
+        <div id="hokusPokus">
+          <a>
+            SEND
+            <span></span>
+          </a>
+          <!-- button -->
+          <!-- radio buttons -->
+          <div class="wrapper">
+            <div class="option">
+              <input
+                class="input"
+                type="radio"
+                name="btn"
+                value="option1"
+                checked=""
+              />
+              <div class="btn">
+                <span class="span">Option</span>
+              </div>
+            </div>
+            <div class="option">
+              <input class="input" type="radio" name="btn" value="option2" />
+              <div class="btn">
+                <span class="span">Option</span>
+              </div>
+            </div>
+            <div class="option">
+              <input class="input" type="radio" name="btn" value="option3" />
+              <div class="btn">
+                <span class="span">Option</span>
+              </div>
+            </div>
+          </div>
+          <!-- radio buttons -->
+          <!-- date picker-->
+          <div class="special-container">
+            <span id="to">To: <span></span></span>
+            <div id="dtl-container">
+              <input type="datetime-local" id="dpr" />
+            </div>
+          </div>
+          <!-- date picker-->
+        </div>
       </form>
     </div>
   </div>

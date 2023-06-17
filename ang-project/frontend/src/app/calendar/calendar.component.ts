@@ -20,8 +20,6 @@ import listPlugin from '@fullcalendar/list';
 })
 export class CalendarComponent {
   ngOnInit() {
-    const container = document.getElementsByClassName('fc-prev-button');
-    console.log(container);
     document.documentElement.style.setProperty(
       '--fc-button-bg-color',
       'rgb(17 24 39)'

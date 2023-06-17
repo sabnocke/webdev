@@ -8,6 +8,10 @@ import { IconComponent } from './icon/icon.component';
 import { MatButtonModule } from '@angular/material/button';
 import { DialogService } from './dialog-service.service';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   standalone: true,
@@ -23,6 +27,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     CommonModule,
     MatButtonModule,
     MatDialogModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
 })
 export class AppComponent {
