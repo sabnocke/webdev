@@ -1,6 +1,6 @@
 <dialog id="diag">
   <div class="backdrop">
-    <div class="uqModal">
+    <div class="uqModal" id="basic">
       <form>
         <!-- input -->
         <div class="user-box">
@@ -56,7 +56,34 @@
           </div>
           <!-- date picker-->
         </div>
+        <button class="next-button uqBtn">Next</button>
       </form>
+    </div>
+    <div class="uqModal" id="switch">
+      <div class="nameholder">
+        <app-checkbox [name]="naming"></app-checkbox>
+      </div>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Erat imperdiet sed
+        euismod nisi porta lorem mollis aliquam. Montes nascetur ridiculus mus
+        mauris vitae ultricies leo integer malesuada. Morbi tristique senectus
+        et netus. Hendrerit gravida rutrum quisque non tellus orci. Mi in nulla
+        posuere sollicitudin aliquam. Eu consequat ac felis donec et odio
+        pellentesque diam. Ac tortor vitae purus faucibus ornare suspendisse sed
+        nisi lacus. Purus in mollis nunc sed. Nisi porta lorem mollis aliquam ut
+        porttitor leo a. Ullamcorper eget nulla facilisi etiam. Quam elementum
+        pulvinar etiam non quam lacus suspendisse faucibus. Duis ultricies lacus
+        sed turpis tincidunt id. Massa tincidunt dui ut ornare lectus sit amet
+        est placerat. Diam maecenas sed enim ut sem viverra aliquet eget sit.
+        Nunc congue nisi vitae suscipit tellus mauris a. Rutrum tellus
+        pellentesque eu tincidunt. Dolor sed viverra ipsum nunc aliquet
+        bibendum. Nulla facilisi etiam dignissim diam quis enim lobortis.
+      </p>
+      <button id="prev-button" class="uqBtn">
+        <mat-icon class="icon">done</mat-icon>
+        <span class="uqText">Click me</span>
+      </button>
     </div>
   </div>
 </dialog>
