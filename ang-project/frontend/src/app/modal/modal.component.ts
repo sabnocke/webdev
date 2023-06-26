@@ -13,12 +13,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
-import {
-  FormGroup,
-  FormControl,
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { EntriesComponent } from '../entries/entries.component';
 
 @Component({
   selector: 'app-modal',
@@ -30,9 +25,9 @@ import {
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    FormsModule,
     MatIconModule,
     CheckboxComponent,
+    EntriesComponent,
   ],
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.sass'],
@@ -40,10 +35,8 @@ import {
 export class ModalComponent {
   naming: string = 'Name Surname';
 
-  range = new FormGroup({
-    start: new FormControl<Date | null>(null),
-    end: new FormControl<Date | null>(null),
-  });
+  radioSwitch: 0 | 1 | 2 | 3 = 0;
+
   constructor(
     private elRef: ElementRef,
     private dialogService: DialogService,
@@ -56,10 +49,13 @@ export class ModalComponent {
     this.cdr.detectChanges();
     this.dialogService.setDialog(dialog);
 
-    const nextButton = document.querySelector('.next-button');
+    const nextButton = document.querySelector('#next-button');
     const prevButton = document.querySelector('#prev-button');
+    const checkAll = document.querySelector('#check-all');
     const basic = document.getElementById('basic');
     const _switch = document.getElementById('switch');
+
+    let isCheckedAll: boolean = false;
 
     if (nextButton && basic && _switch) {
       nextButton.addEventListener('click', () => {
@@ -75,29 +71,53 @@ export class ModalComponent {
         console.log('clicked');
       });
     }
-    const d = new Date();
-    const dateControl = document.getElementById('dpr') as HTMLInputElement;
-    const idl = document.getElementById('idl') as HTMLInputElement;
-    const pattern = '/(?::d{2}.[dw]+)/g';
 
-    const isoDate = (): string => {
-      const year = d.getFullYear();
-      const month = d.getMonth() + 1;
-      const day = d.getDate();
-      const hour = d.getHours();
-      const minute = d.getMinutes();
-      const dateString = `${year}-${month}-${day}T${hour}:${minute}`;
-      return dateString;
-    };
-    if (dateControl) {
-      //alert(`date: ${isoDate()}`);
-      dateControl.value = d.toISOString();
-      //alert(dateControl.value);
-    } else {
-      alert('problem');
+    if (checkAll) {
+      checkAll.addEventListener('click', () => {
+        const container: NodeListOf<HTMLElement> =
+          document.querySelectorAll('.container');
+        container.forEach((element) => {
+          const input = element.querySelector('.cbx2') as HTMLInputElement;
+          const label = element.querySelector('.actualName') as HTMLElement;
+          if (input) {
+            input.checked = !isCheckedAll;
+            label.style.color = input.checked ? '#a3e583' : '#fff';
+          }
+        });
+        isCheckedAll = !isCheckedAll;
+        checkAll.textContent = isCheckedAll ? 'Check All' : 'Uncheck All';
+      });
     }
-    if (idl) {
-      idl.value = isoDate();
+
+    const radioButton1 = document.getElementById(
+      'optionButton1'
+    ) as HTMLInputElement;
+    const radioButton2 = document.getElementById(
+      'optionButton2'
+    ) as HTMLInputElement;
+    const radioButton3 = document.getElementById(
+      'optionButton3'
+    ) as HTMLInputElement;
+
+    if (radioButton1 && radioButton2 && radioButton3) {
+      radioButton1.addEventListener('change', (event) => {
+        const target = event.target as HTMLInputElement;
+        if (target.checked) {
+          this.radioSwitch = 1;
+        }
+      });
+      radioButton2.addEventListener('change', (event) => {
+        const target = event.target as HTMLInputElement;
+        if (target.checked) {
+          this.radioSwitch = 2;
+        }
+      });
+      radioButton3.addEventListener('change', (event) => {
+        const target = event.target as HTMLInputElement;
+        if (target.checked) {
+          this.radioSwitch = 0;
+        }
+      });
     }
   }
   openDialog(): void {
@@ -113,4 +133,15 @@ export class ModalComponent {
       this.closeDialog();
     }
   }
+  @HostListener('window:click', ['$event'])
+  MouseEvent(event: MouseEvent) {
+    const diag = document.querySelector('#diag');
+    if (event.target === diag) {
+      event.preventDefault();
+      this.closeDialog();
+    }
+  }
 }
+
+//TODO make it possible to navigate in modal via arrows | backspace
+//TODO fetch input from both basic and switch (connect to button pressing)

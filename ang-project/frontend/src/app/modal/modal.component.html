@@ -1,89 +1,100 @@
-<dialog id="diag">
-  <div class="backdrop">
-    <div class="uqModal" id="basic">
-      <form>
-        <!-- input -->
-        <div class="user-box">
-          <input type="text" name="" required="" />
-          <label>Username</label>
-        </div>
-        <div class="user-box">
-          <input type="password" name="" required="" />
-          <label>Password</label>
-        </div>
-        <!-- input -->
-        <!-- button -->
-        <div id="hokusPokus">
-          <a>
-            SEND
-            <span></span>
-          </a>
-          <!-- button -->
-          <!-- radio buttons -->
-          <div class="wrapper">
-            <div class="option">
-              <input
-                class="input"
-                type="radio"
-                name="btn"
-                value="option1"
-                checked=""
-              />
-              <div class="btn">
-                <span class="span">Option</span>
-              </div>
-            </div>
-            <div class="option">
-              <input class="input" type="radio" name="btn" value="option2" />
-              <div class="btn">
-                <span class="span">Option</span>
-              </div>
-            </div>
-            <div class="option">
-              <input class="input" type="radio" name="btn" value="option3" />
-              <div class="btn">
-                <span class="span">Option</span>
-              </div>
-            </div>
-          </div>
-          <!-- radio buttons -->
-          <!-- date picker-->
-          <div class="special-container">
-            <span id="to">To: <span></span></span>
-            <div id="dtl-container">
-              <input type="datetime-local" id="dpr" />
-            </div>
-          </div>
-          <!-- date picker-->
-        </div>
-        <button class="next-button uqBtn">Next</button>
-      </form>
-    </div>
-    <div class="uqModal" id="switch">
-      <div class="nameholder">
-        <app-checkbox [name]="naming"></app-checkbox>
+<dialog id="diag" class="custom-scrollbar">
+  <div class="uqModal" id="basic">
+    <form>
+      <!-- input -->
+      <div class="user-box">
+        <input type="text" name="" required="" />
+        <label>Username</label>
       </div>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Erat imperdiet sed
-        euismod nisi porta lorem mollis aliquam. Montes nascetur ridiculus mus
-        mauris vitae ultricies leo integer malesuada. Morbi tristique senectus
-        et netus. Hendrerit gravida rutrum quisque non tellus orci. Mi in nulla
-        posuere sollicitudin aliquam. Eu consequat ac felis donec et odio
-        pellentesque diam. Ac tortor vitae purus faucibus ornare suspendisse sed
-        nisi lacus. Purus in mollis nunc sed. Nisi porta lorem mollis aliquam ut
-        porttitor leo a. Ullamcorper eget nulla facilisi etiam. Quam elementum
-        pulvinar etiam non quam lacus suspendisse faucibus. Duis ultricies lacus
-        sed turpis tincidunt id. Massa tincidunt dui ut ornare lectus sit amet
-        est placerat. Diam maecenas sed enim ut sem viverra aliquet eget sit.
-        Nunc congue nisi vitae suscipit tellus mauris a. Rutrum tellus
-        pellentesque eu tincidunt. Dolor sed viverra ipsum nunc aliquet
-        bibendum. Nulla facilisi etiam dignissim diam quis enim lobortis.
-      </p>
-      <button id="prev-button" class="uqBtn">
-        <mat-icon class="icon">done</mat-icon>
-        <span class="uqText">Click me</span>
-      </button>
-    </div>
+      <div class="user-box">
+        <input type="password" name="" required="" />
+        <label>Password</label>
+      </div>
+      <!-- input -->
+      <!-- button -->
+      <div id="hokusPokus">
+        <!-- button -->
+        <!-- radio buttons -->
+        <div class="wrapper">
+          <div class="option">
+            <input
+              class="input"
+              type="radio"
+              name="btn"
+              value="option1"
+              id="optionButton1"
+            />
+            <div class="btn">
+              <span class="span">Option</span>
+            </div>
+          </div>
+          <div class="option">
+            <input
+              class="input"
+              type="radio"
+              name="btn"
+              value="option2"
+              id="optionButton2"
+            />
+            <div class="btn">
+              <span class="span">Option</span>
+            </div>
+          </div>
+          <div class="option">
+            <input
+              class="input"
+              type="radio"
+              name="btn"
+              value="option3"
+              id="optionButton3"
+            />
+            <div class="btn">
+              <span class="span">Option</span>
+            </div>
+          </div>
+        </div>
+        <!-- radio buttons -->
+        <!-- date picker -->
+        <div class="special-container" *ngIf="radioSwitch === 1">
+          <span class="to">To: <span></span></span>
+          <div class="dtl-container">
+            <input
+              type="datetime-local"
+              class="dpr"
+              style="text-transform: uppercase"
+            />
+          </div>
+        </div>
+        <!-- date picker -->
+        <!-- time picker -->
+        <div *ngIf="radioSwitch === 2" class="special-container">
+          <span class="to">Hours:</span>
+          <div class="dtl-container">
+            <input
+              type="number"
+              class="dpr"
+              id="attemptAtCenter"
+              placeholder="How long will it take?"
+            />
+          </div>
+        </div>
+        <!-- time picker -->
+      </div>
+    </form>
+    <button class="uqBtn" id="next-button">
+      <mat-icon class="icon">arrow_forward_ios</mat-icon>
+      <span class="uqText" id="next">Next</span>
+    </button>
   </div>
+  <div class="uqModal" id="switch">
+    <button class="uqBtn" id="check-all">Check All</button>
+    <div>
+      <app-entries></app-entries>
+    </div>
+    <button id="prev-button" class="uqBtn">
+      <mat-icon class="icon">arrow_back_ios</mat-icon>
+      <span class="uqText">Previous</span>
+    </button>
+  </div>
+  <!-- </div> -->
 </dialog>

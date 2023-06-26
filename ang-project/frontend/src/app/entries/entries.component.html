@@ -1,0 +1,8 @@
+<div>
+  <div *ngFor="let item of arrayOfNames; let i = index">
+    <app-checkbox [name]="item" [id]="i"></app-checkbox>
+    <div
+      class="my-4 mx-auto flex align-center items-center before:content-[''] before:inline-block before:h-[1px] before:w-[20px] before:grow before:bg-gray-200 before:align-middle after:content-[''] after:inline-block after:h-[1px] after:w-[20px] after:grow after:bg-gray-200 after:align-middle"
+    ></div>
+  </div>
+</div>
