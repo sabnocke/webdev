@@ -142,6 +142,3 @@ export class ModalComponent {
     }
   }
 }
-
-//TODO make it possible to navigate in modal via arrows | backspace
-//TODO fetch input from both basic and switch (connect to button pressing)

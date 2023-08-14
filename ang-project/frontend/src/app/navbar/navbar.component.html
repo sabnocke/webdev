@@ -3,7 +3,11 @@
   id="zin"
 >
   <app-icon [iconName]="search" [text]="searchText"></app-icon>
-  <app-icon [iconName]="settings" [text]="searchText"></app-icon>
+  <app-icon
+    [iconName]="settings"
+    [text]="settingsText"
+    (click)="openSett()"
+  ></app-icon>
   <app-icon
     [iconName]="add"
     [text]="addTooltipText"
@@ -12,5 +16,7 @@
   <app-icon [iconName]="delete" [text]="searchText"></app-icon>
   <app-icon [iconName]="publish" [text]="searchText"></app-icon>
 </div>
+
 <app-modal></app-modal>
+<app-settings></app-settings>
 <!-- search settings add delete publish -->
