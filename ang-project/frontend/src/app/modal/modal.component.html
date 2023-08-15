@@ -91,10 +91,40 @@
     <div>
       <app-entries></app-entries>
     </div>
-    <button id="prev-button" class="uqBtn">
+    <div id="scr2BtnHolder">
+      <button id="prev-button" class="uqBtn">
+        <mat-icon class="icon">arrow_back_ios</mat-icon>
+        <span class="uqText">Previous</span>
+      </button>
+      <button id="next-button2" class="uqBtn">
+        <mat-icon class="icon">arrow_forward_ios</mat-icon>
+        <span class="uqText">Next</span>
+      </button>
+    </div>
+  </div>
+  <!-- </div> -->
+</dialog>
+<dialog id="finalDiag">
+  <div class="uqModal">
+    <form>
+      <div class="user-box2">
+        <input
+          type="text"
+          name=""
+          required=""
+          value="testTest"
+          readonly="true"
+        />
+        <label class="uqLabel">Username</label>
+      </div>
+      <div class="user-box2">
+        <input type="password" name="" required="" />
+        <label class="uqLabel">Password</label>
+      </div>
+    </form>
+    <button id="prev-button2" class="uqBtn">
       <mat-icon class="icon">arrow_back_ios</mat-icon>
       <span class="uqText">Previous</span>
     </button>
   </div>
-  <!-- </div> -->
 </dialog>

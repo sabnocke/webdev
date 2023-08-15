@@ -3,6 +3,7 @@ import {
   ElementRef,
   ChangeDetectorRef,
   HostListener,
+  Host,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IconComponent } from '../icon/icon.component';
@@ -42,15 +43,45 @@ export class ModalComponent {
     private dialogService: DialogService,
     private cdr: ChangeDetectorRef
   ) {}
+
+  findCheckedInputs(id: string) {
+    interface InputValues {
+      [key: string]: boolean;
+    }
+
+    const parentNode = document.getElementById(id);
+    const inputValues: InputValues = {};
+    const inputElements: NodeListOf<HTMLInputElement> | [] =
+      parentNode !== null
+        ? parentNode.querySelectorAll("input[type='checkbox']")
+        : [];
+
+    inputElements.forEach((element: HTMLInputElement) => {
+      const elementName = element.getAttribute('name');
+      const isChecked = element.checked;
+      if (elementName && isChecked) {
+        inputValues[elementName] = isChecked;
+      }
+    });
+    return inputValues;
+  }
+
   ngAfterViewInit(): void {
+    const entryReg = this.elRef.nativeElement.querySelector('#entryReg');
+
     const dialog = this.elRef.nativeElement.querySelector(
       '#diag'
+    ) as HTMLDialogElement;
+    const finalDiag = this.elRef.nativeElement.querySelector(
+      '#finalDiag'
     ) as HTMLDialogElement;
     this.cdr.detectChanges();
     this.dialogService.setDialog(dialog);
 
     const nextButton = document.querySelector('#next-button');
+    const nextButton2 = document.querySelector('#next-button2');
     const prevButton = document.querySelector('#prev-button');
+    const prevButton2 = document.querySelector('#prev-button2');
     const checkAll = document.querySelector('#check-all');
     const basic = document.getElementById('basic');
     const _switch = document.getElementById('switch');
@@ -69,6 +100,18 @@ export class ModalComponent {
         basic.style.display = 'block';
         _switch.style.display = 'none';
         console.log('clicked');
+      });
+    }
+
+    if (nextButton2 && prevButton2) {
+      nextButton2.addEventListener('click', () => {
+        this.dialogService.closeDialog();
+        finalDiag.showModal();
+        console.log(this.findCheckedInputs('#entryReg'));
+      });
+      prevButton2.addEventListener('click', () => {
+        this.dialogService.openDialog();
+        finalDiag.close();
       });
     }
 
@@ -120,6 +163,14 @@ export class ModalComponent {
       });
     }
   }
+  closingEvent(): void {
+    const basic = document.getElementById('basic');
+    const _switch = document.getElementById('switch');
+    if (basic && _switch) {
+      basic.style.display = 'block';
+      _switch.style.display = 'none';
+    }
+  }
   openDialog(): void {
     this.dialogService.openDialog();
   }
@@ -129,16 +180,32 @@ export class ModalComponent {
 
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
+    const fDiag = this.elRef.nativeElement.querySelector(
+      '#finalDiag'
+    ) as HTMLDialogElement;
     if (event.key === 'Escape') {
+      event.preventDefault();
       this.closeDialog();
+      if (fDiag.open) {
+        fDiag.close();
+      }
+      this.closingEvent();
     }
   }
   @HostListener('window:click', ['$event'])
   MouseEvent(event: MouseEvent) {
     const diag = document.querySelector('#diag');
+    const fDiag = this.elRef.nativeElement.querySelector(
+      '#finalDiag'
+    ) as HTMLDialogElement;
     if (event.target === diag) {
       event.preventDefault();
       this.closeDialog();
+      this.closingEvent();
+    } else if (event.target === fDiag) {
+      event.preventDefault();
+      fDiag.close();
+      this.closingEvent();
     }
   }
 }
