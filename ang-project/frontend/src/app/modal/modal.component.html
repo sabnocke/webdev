@@ -3,7 +3,7 @@
     <form>
       <!-- input -->
       <div class="user-box">
-        <input type="text" name="" required="" />
+        <input type="text" name="" required="" id="name-box" />
         <label>Username</label>
       </div>
       <div class="user-box">
@@ -59,9 +59,10 @@
           <span class="to">To: <span></span></span>
           <div class="dtl-container">
             <input
-              type="datetime-local"
+              type="date"
               class="dpr"
               style="text-transform: uppercase"
+              id="date-selector"
             />
           </div>
         </div>
@@ -71,9 +72,9 @@
           <span class="to">Hours:</span>
           <div class="dtl-container">
             <input
-              type="number"
+              type="number attemptAtCenter"
               class="dpr"
-              id="attemptAtCenter"
+              id="hours-selector"
               placeholder="How long will it take?"
             />
           </div>
@@ -91,21 +92,21 @@
     <div>
       <app-entries></app-entries>
     </div>
-    <div id="scr2BtnHolder">
+    <div class="scr2BtnHolder">
       <button id="prev-button" class="uqBtn">
         <mat-icon class="icon">arrow_back_ios</mat-icon>
         <span class="uqText">Previous</span>
       </button>
       <button id="next-button2" class="uqBtn">
         <mat-icon class="icon">arrow_forward_ios</mat-icon>
-        <span class="uqText">Next</span>
+        <span class="uqText" id="nxt">Next</span>
       </button>
     </div>
   </div>
   <!-- </div> -->
 </dialog>
 <dialog id="finalDiag">
-  <div class="uqModal">
+  <div class="uqModal" id="output">
     <form>
       <div class="user-box2">
         <input
@@ -114,17 +115,28 @@
           required=""
           value="testTest"
           readonly="true"
+          id="orderName"
         />
         <label class="uqLabel">Username</label>
       </div>
       <div class="user-box2">
-        <input type="password" name="" required="" />
-        <label class="uqLabel">Password</label>
+        <input type="text" name="" required="" readonly="true" id="names" />
+        <label class="uqLabel">Names</label>
+      </div>
+      <div class="user-box2">
+        <input type="text" name="" id="time" readonly="true" />
+        <label for="" class="uqLabel">{{ time }}</label>
       </div>
     </form>
-    <button id="prev-button2" class="uqBtn">
-      <mat-icon class="icon">arrow_back_ios</mat-icon>
-      <span class="uqText">Previous</span>
-    </button>
+    <div class="scr2BtnHolder">
+      <button id="prev-button2" class="uqBtn">
+        <mat-icon class="icon">arrow_back_ios</mat-icon>
+        <span class="uqText">Previous</span>
+      </button>
+      <button id="next-button3" class="uqBtn">
+        <mat-icon class="icon">arrow_forward_ios</mat-icon>
+        <span class="uqText">Continue</span>
+      </button>
+    </div>
   </div>
 </dialog>

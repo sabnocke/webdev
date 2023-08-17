@@ -1,7 +1,8 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CalendarOptions } from '@fullcalendar/core';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { FullCalendarComponent } from '@fullcalendar/angular';
 import { ModalComponent } from '../modal/modal.component';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -10,6 +11,11 @@ import csLocale from '@fullcalendar/core/locales/cs';
 import resourceTimelinePlugin from '@fullcalendar/resource-timeline';
 import multiMonthPlugin from '@fullcalendar/multimonth';
 import listPlugin from '@fullcalendar/list';
+import { Tooltip } from 'flowbite';
+import { WayfarerService } from '../wayfarer.service';
+import { DateTime } from 'luxon';
+import tippy from 'tippy.js';
+import { createPopper } from '@popperjs/core';
 
 @Component({
   selector: 'app-calendar',
@@ -19,13 +25,15 @@ import listPlugin from '@fullcalendar/list';
   styleUrls: ['./calendar.component.sass'],
 })
 export class CalendarComponent {
+  @ViewChild('calendar') calendarComponent!: FullCalendarComponent;
   ngOnInit() {
     document.documentElement.style.setProperty(
       '--fc-button-bg-color',
       'rgb(17 24 39)'
     );
   }
-
+  constructor(private wf: WayfarerService) {}
+  dataField = [];
   calendarOptions: CalendarOptions = {
     schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
     plugins: [
@@ -66,26 +74,47 @@ export class CalendarComponent {
       minute: '2-digit',
       second: '2-digit',
       hour12: false,
+      meridiem: false,
     },
-    events: [
-      {
-        title: 'event1',
-        start: '2023-06-16T12:30:00', // YYYY-MM-DD T HH:MM:SS
-        end: '2023-06-16T16:00:00',
-        allDay: false,
-      },
-      {
-        title: 'doing stuff',
-        start: '2023-06-16',
-        end: '2023-06-20',
-        allDay: true,
-      },
-      {
-        title: 'event2',
-        start: '2023-06-16T11:00:00', // YYYY-MM-DD T HH:MM:SS
-        end: '2023-06-16T15:30:00',
-        allDay: false,
-      },
-    ],
+    eventContent(eventInfo) {
+      const title = eventInfo.event.title;
+      const start = eventInfo.event.start;
+      const end = eventInfo.event.end;
+      const betterStart = start
+        ? DateTime.fromJSDate(start).toLocaleString(DateTime.DATETIME_FULL)
+        : null;
+      const betterEnd = end
+        ? DateTime.fromJSDate(end).toLocaleString(DateTime.DATETIME_FULL)
+        : null;
+      const description = eventInfo.event.extendedProps['description'];
+      return {
+        html: `<b>${title}</b><br>
+        Start: ${betterStart}<br>
+        End: ${betterEnd}<br>
+        Names: ${description}
+        
+        `,
+      };
+    },
+    eventDidMount(info) {
+      const eventElement = info.el;
+      const desc = info.event.extendedProps['description'];
+      tippy(eventElement, {
+        content: desc,
+        placement: 'top',
+        theme: 'custom',
+      });
+    },
   };
+  someMethod() {}
+  ngAfterViewInit() {
+    let calendarApi = this.calendarComponent.getApi();
+    //calendarApi.next();
+    this.wf.getData().subscribe((data) => {
+      console.log('obtained: ', data);
+      this.calendarOptions.events = data;
+      console.log('events: ', this.calendarOptions.events);
+      calendarApi.render();
+    });
+  }
 }
