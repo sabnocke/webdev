@@ -18,6 +18,7 @@ import { EntryObserverService } from '../entryobserver.service';
 import { DxoWidthModule } from 'devextreme-angular/ui/nested';
 import { WayfarerService } from '../wayfarer.service';
 import { DateTime } from 'luxon';
+import tippy from 'tippy.js';
 
 interface InputValues {
   [key: string]: boolean;
@@ -92,7 +93,8 @@ export class ModalComponent {
     private elRef: ElementRef,
     private dialogService: DialogService,
     private cdr: ChangeDetectorRef,
-    private wf: WayfarerService
+    private wf: WayfarerService,
+    private eos: EntryObserverService
   ) {}
 
   addWeekdays(date: Date, weekdays: number): Date {
@@ -112,12 +114,18 @@ export class ModalComponent {
     const now = DateTime.now();
     let later = DateTime.now();
     const propHours = parseInt(hours);
-    console.log('later', later.toLocaleString(DateTime.DATETIME_FULL));
-    later = later.plus({ hours: propHours });
-    console.log('hours:', propHours);
-    console.log('later', later.toLocaleString(DateTime.DATETIME_FULL));
+    if (propHours > 0) {
+      console.log('later', later.toLocaleString(DateTime.DATETIME_FULL));
+      later = later.plus({ hours: propHours });
+      if (later.weekday > 5) {
+        later = later.plus({ day: 2 });
+      }
 
-    /*
+      console.log('hours:', propHours);
+      console.log('\nlater', later.toLocaleString(DateTime.DATETIME_FULL));
+      console.log('later.weekday: ', later.weekday);
+
+      /*
     const dayCount = Math.floor(propHours / 24);
     let remainingHours = dayCount > 1 ? dayCount % 24 : propHours;
     later.setDate(later.getDate() + dayCount);
@@ -130,7 +138,9 @@ export class ModalComponent {
     later.setHours(remainingHours);
     console.log('remain: ', remainingHours);
     console.log('later: ', later.toISOString());*/
-    return later;
+      return later;
+    }
+    return now; // maybe switch to later anyway
   }
 
   provideData(data: loading) {
@@ -140,9 +150,14 @@ export class ModalComponent {
       start: new Date().toISOString(),
       end: data.time.toISOString(),
       description: data.names,
+      display: '',
     };
-    this.wf.addData(event);
-    console.log('given: ', event);
+    if (event.title && event.end && event.description) {
+      this.wf.addData(event);
+    } else {
+      alert('Not all values given!');
+    }
+    // console.log('given: ', event);
   }
   findCheckedInputs(content: HTMLDivElement) {
     //const bank = eos.load();
@@ -188,7 +203,7 @@ export class ModalComponent {
     inputList.forEach((element: HTMLInputElement) => {
       // console.log(`${element}'s id: `, element.id);
       if (element.id === 'orderName') {
-        console.log('value', element.value);
+        // console.log('value', element.value);
         name = element;
       }
       if (element.id === 'names') {
@@ -242,7 +257,7 @@ export class ModalComponent {
     loading.time = this.vDB.dateChosen
       ? this.vDB.date.toJSDate()
       : this.calculateProperDay(this.vDB.hours).toJSDate();
-    console.log('end: ', loading.time);
+    // console.log('end: ', loading.time);
     return loading;
     //console.log(name.value);
     //time.value = editedTime;
@@ -250,7 +265,7 @@ export class ModalComponent {
 
   ngAfterViewInit(): void {
     const entryReg = this.elRef.nativeElement.querySelector('#entryReg');
-    console.log(entryReg);
+    // console.log(entryReg);
     const dialog = this.elRef.nativeElement.querySelector(
       '#diag'
     ) as HTMLDialogElement;

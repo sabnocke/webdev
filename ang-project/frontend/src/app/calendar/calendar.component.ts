@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CalendarOptions } from '@fullcalendar/core';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { FullCalendarComponent } from '@fullcalendar/angular';
+import { Calendar } from '@fullcalendar/core';
 import { ModalComponent } from '../modal/modal.component';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -16,6 +17,7 @@ import { WayfarerService } from '../wayfarer.service';
 import { DateTime } from 'luxon';
 import tippy from 'tippy.js';
 import { createPopper } from '@popperjs/core';
+import { event } from 'jquery';
 
 @Component({
   selector: 'app-calendar',
@@ -33,7 +35,7 @@ export class CalendarComponent {
     );
   }
   constructor(private wf: WayfarerService) {}
-  dataField = [];
+
   calendarOptions: CalendarOptions = {
     schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
     plugins: [
@@ -49,7 +51,7 @@ export class CalendarComponent {
     multiMonthMaxColumns: 1,
     locale: csLocale,
     selectable: true,
-    editable: true,
+    editable: false, // was true
     weekends: false,
     navLinks: true,
     nowIndicator: true,
@@ -76,45 +78,101 @@ export class CalendarComponent {
       hour12: false,
       meridiem: false,
     },
-    eventContent(eventInfo) {
-      const title = eventInfo.event.title;
-      const start = eventInfo.event.start;
-      const end = eventInfo.event.end;
+
+    events: [
+      {
+        title: 'title',
+        content: 'content',
+        start: new Date(),
+        display: 'list-item', // block | background
+      },
+      {
+        title: 'name',
+        start: new Date(),
+        end: new Date().setHours(new Date().getDate() + 1),
+        display: 'list-item',
+      },
+    ],
+    eventMouseEnter() {
+      console.log('mouse touched event');
+    },
+    eventClick() {
+      // const el = document.createElement('div');
+      // el.innerText = 'Text';
+      // document.appendChild(el);
+    },
+    eventContent(render) {
+      const title = render.event.title;
+      const start = render.event.start;
+      const end = render.event.end;
+      const desc = render.event.extendedProps['description'];
       const betterStart = start
         ? DateTime.fromJSDate(start).toLocaleString(DateTime.DATETIME_FULL)
         : null;
       const betterEnd = end
         ? DateTime.fromJSDate(end).toLocaleString(DateTime.DATETIME_FULL)
         : null;
-      const description = eventInfo.event.extendedProps['description'];
-      return {
-        html: `<b>${title}</b><br>
-        Start: ${betterStart}<br>
-        End: ${betterEnd}<br>
-        Names: ${description}
-        
-        `,
-      };
-    },
-    eventDidMount(info) {
-      const eventElement = info.el;
-      const desc = info.event.extendedProps['description'];
-      tippy(eventElement, {
-        content: desc,
-        placement: 'top',
-        theme: 'custom',
+      let isClicked = true;
+      const eventDiv = document.createElement('div');
+      eventDiv.innerHTML = title;
+      eventDiv.addEventListener('mouseenter', () => {
+        eventDiv.innerHTML = `<b>${title ? title : 'default'}</b><br>
+        Start: ${betterStart ? betterStart : 'undefined'}<br>
+        End: ${betterEnd ? betterEnd : 'undefined'}<br>
+        Names: ${desc ? desc : 'undefined'}
+        `;
+        //eventDiv.style.backgroundColor = 'lightblue';
       });
+      eventDiv.addEventListener('mouseleave', () => {
+        eventDiv.innerHTML = title;
+        //eventDiv.style.backgroundColor = ''; //? resets backgroundColor?
+      });
+      eventDiv.addEventListener('click', () => {
+        console.log(`Clicked ${isClicked}`);
+        if (!isClicked) {
+          eventDiv.innerHTML = title;
+          console.log('simple view');
+        } else {
+          console.log('detail view');
+          eventDiv.innerHTML = `<b>${title ? title : 'default'}</b><br>
+        Start: ${betterStart ? betterStart : 'undefined'}<br>
+        End: ${betterEnd ? betterEnd : 'undefined'}<br>
+        Names: ${desc ? desc : 'undefined'}
+        `;
+        }
+        isClicked = !isClicked;
+      });
+
+      return { domNodes: [eventDiv] };
     },
   };
-  someMethod() {}
+
   ngAfterViewInit() {
-    let calendarApi = this.calendarComponent.getApi();
+    //! this.wf.estimateAvailibleMemory();
+    const calendarEl = document.getElementById('calendarDivEl');
+    let calendar: Calendar;
+    // let calendarApi = this.calendarComponent.getApi();
     //calendarApi.next();
-    this.wf.getData().subscribe((data) => {
-      console.log('obtained: ', data);
-      this.calendarOptions.events = data;
-      console.log('events: ', this.calendarOptions.events);
-      calendarApi.render();
-    });
+    if (calendarEl) {
+      console.log('calendar element found');
+      calendar = new Calendar(calendarEl, this.calendarOptions);
+      calendar.render();
+      // calendar.addEvent({
+      // title: 'New event',
+      // start: new Date(),
+      // allDay: true,
+      // });
+      if (calendar) {
+        this.wf.getData().subscribe((data) => {
+          console.log('obtained: ', data);
+          calendar.addEvent(data);
+          console.log('events:\n', this.calendarOptions.events);
+          console.log('givenEvents', this.wf.accessDataSet());
+          calendar.render();
+        });
+      }
+    } else {
+      console.log('calendar element not found');
+    }
   }
 }

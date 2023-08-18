@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EntryObserverService {
-  bank: NodeListOf<HTMLInputElement> | never[] = [];
-  save(content: HTMLElement, type: string = "input[type='checkbox']") {
-    this.bank = content.querySelectorAll(type);
+  private dataBank: any[] = [];
+  private dataSubject: BehaviorSubject<any[]> = new BehaviorSubject(
+    this.dataBank
+  );
+  addData(data: string[]) {
+    this.dataBank = data;
+    this.dataSubject.next(this.dataBank);
   }
-  load() {
-    return this.bank;
+  getData() {
+    return this.dataSubject.asObservable();
   }
 }

@@ -11,11 +11,18 @@ import { EntryObserverService } from '../entryobserver.service';
   styleUrls: ['./entries.component.sass'],
 })
 export class EntriesComponent {
-  constructor(private EOS: EntryObserverService, private elRef: ElementRef) {}
+  constructor(private eos: EntryObserverService, private elRef: ElementRef) {}
   arrayOfNames: string[] = [];
   ngAfterViewInit() {
-    const loaded = localStorage.getItem('names');
-    this.arrayOfNames = loaded !== null ? JSON.parse(loaded) : [];
-    const entryReg = this.elRef.nativeElement.querySelector('#entryReg');
+    const loadedData = localStorage.getItem('names');
+    if (this.arrayOfNames.length === 0) {
+      this.arrayOfNames = loadedData ? JSON.parse(loadedData) : [];
+    }
+    this.eos.getData().subscribe((data) => {
+      console.log('Received (eos): ', data);
+      this.arrayOfNames =
+        data.length > 0 ? data : loadedData ? JSON.parse(loadedData) : [];
+    });
+    // const entryReg = this.elRef.nativeElement.querySelector('#entryReg');
   }
 }

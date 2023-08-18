@@ -2,20 +2,28 @@
 @tailwind components
 @tailwind utilities
 
+$equilibrium: 1200px
+
 .calendarHolder
     position: fixed
     margin-top: -2em
     top: 80px
-    width: 1000px
-    height: 1000px
+    width: $equilibrium
+    height: $equilibrium
 
 .fc
     color: #000
 
-.tippy-tooltip
+.tippy-box[data-theme~="custom"]
+    background-color: #f7f7f7
+    color: black
+    border: 1px solid #ededed
+    border-radius: 0
+
+.tooltip
     background-color: #333
-    color: #fff
-    font-size: 14px
-    padding: 8px 12px
+    color: white
+    font-weight: bold
+    padding: 4px 8px
+    font-size: 13px
     border-radius: 4px
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)

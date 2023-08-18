@@ -8,6 +8,8 @@ import { CommonModule } from '@angular/common';
 import { InhibitorService } from '../inhibitor.service';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
 import { MatIconModule } from '@angular/material/icon';
+import { EntryObserverService } from '../entryobserver.service';
+import { data } from 'jquery';
 
 @Component({
   selector: 'app-settings',
@@ -20,7 +22,8 @@ export class SettingsComponent {
   constructor(
     private elRef: ElementRef,
     private sett: InhibitorService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private eos: EntryObserverService
   ) {}
   nameHolder: Set<string> = new Set<string>();
   saveSettings() {
@@ -29,7 +32,9 @@ export class SettingsComponent {
     values.forEach((value) => {
       this.nameHolder.add(value);
     });
-    localStorage.setItem('names', JSON.stringify(Array.from(this.nameHolder)));
+    // localStorage.setItem('names', JSON.stringify(Array.from(this.nameHolder)));
+    this.eos.addData(Array.from(this.nameHolder));
+    console.log('Given (eos): \n', this.nameHolder);
   }
   loadSettings(key: string) {
     if (key !== null) {
@@ -39,6 +44,7 @@ export class SettingsComponent {
       if (data && data.length > 0) {
         txtAr.value = data.join('\n');
       }
+      // this.eos.addData(data);
     }
   }
   ngAfterViewInit(): void {
@@ -64,7 +70,7 @@ export class SettingsComponent {
 
   closeSettings() {
     this.saveSettings();
-    location.reload();
+    // location.reload();
     this.sett.closeDialog();
   }
   @HostListener('window:keydown', ['$event'])
