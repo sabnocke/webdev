@@ -18,6 +18,9 @@ export class WayfarerService {
       console.log('Saved...');
       this.purgeData();
     }
+    if (this.counter > 5) {
+      this.estimateAvailibleMemory();
+    }
   }
   getData() {
     return this.dataSubject.asObservable();

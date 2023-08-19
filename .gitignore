@@ -58,3 +58,9 @@ project/static/calendar.js
 project/templates/home.html
 ttDb.db
 .idea/jsLibraryMappings.xml
+tomfoolery/cal2/style.css
+tomfoolery/cal2/index.html
+tomfoolery/cal2/app.js
+tomfoolery/cal/template.html
+tomfoolery/cal/cst.css
+tomfoolery/cal/app.js

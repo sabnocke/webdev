@@ -148,7 +148,7 @@ export class CalendarComponent {
   };
 
   ngAfterViewInit() {
-    //! this.wf.estimateAvailibleMemory();
+    //this.wf.estimateAvailibleMemory();
     const calendarEl = document.getElementById('calendarDivEl');
     let calendar: Calendar;
     // let calendarApi = this.calendarComponent.getApi();
