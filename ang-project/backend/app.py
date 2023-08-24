@@ -1,8 +1,7 @@
-from flask import Flask, render_template, request, send_from_directory, jsonify
-from flask_cors import CORS
 from pathlib import Path
 from pprint import pprint
-
+from flask import Flask, request, send_from_directory, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__, static_url_path="")
 app.static_folder = "../frontend/src/"

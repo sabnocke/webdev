@@ -2,7 +2,6 @@ import yaml
 import os
 import re
 from typing import List, Dict, Union, Any, Tuple
-from Variables import TreeNode
 from sqlalchemy import create_engine, Engine
 from collections import namedtuple, UserDict
 from pprint import pprint
@@ -17,7 +16,7 @@ class YAMLHandler:
             else os.path.join(path, "backend")
         )
         self.properPath = self.findPath()
-        self.yaml_dict = self.access()
+        self.yaml_dict = self.load()
 
     def findPath(self):
         for root, dirs, files in os.walk(self.path):
@@ -26,11 +25,12 @@ class YAMLHandler:
             else:
                 raise FileNotFoundError
 
-    def access(self, key: Union[str, None] = None) -> Dict[str, Union[str, Dict]]:
+    def load(self) -> Dict[str, str]:
         if self.properPath:
+            #print("properPath found")
             with open(self.properPath, "r") as f:
                 config = yaml.safe_load(f)
-                return config[key] if key else config
+                return config
         return {}
 
     def alter(self):
@@ -38,14 +38,19 @@ class YAMLHandler:
             with open(self.properPath, "w") as f:
                 yaml.dump(self.yaml_dict, f, indent=2)
 
-    def get(self, args: tuple[str, str]):
-        fir, sec = args
-        first = self.yaml_dict.get(fir, None)
-        if isinstance(first, dict):
-            second = first.get(sec, None)
+    def get(self, args: tuple[str, str] = tuple(), arg: str = "") -> Union[str, Any]:
+        if (args):
+            first = self.yaml_dict.get(args[0], None)
+            if isinstance(first, dict):
+                second = first.get(args[1], None)
+            else:
+                return first
+            return second
+        elif (arg):
+            return self.yaml_dict.get(arg, None)
         else:
-            return first
-        return second
+            raise Exception("ERROR: unspecified arguments")
+        
 
     def set(self, address: Union[Tuple[str, str], str], data):
         try:
