@@ -38,7 +38,7 @@ class YAMLHandler:
             with open(self.properPath, "w") as f:
                 yaml.dump(self.yaml_dict, f, indent=2)
 
-    def get(self, args: tuple[str, str] = tuple(), arg: str = "") -> Union[str, Any]:
+    def get(self, args: tuple[str, str] = ("", ""), arg: str = "") -> Union[str, Any]:
         if (args):
             first = self.yaml_dict.get(args[0], None)
             if isinstance(first, dict):

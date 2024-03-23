@@ -1,5 +1,6 @@
 from pathlib import Path
 from pprint import pprint
+
 from flask import Flask, request, send_from_directory, jsonify
 from flask_cors import CORS
 
@@ -33,4 +34,5 @@ def give_data():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="localhost", port=5000)
+    # app.run(debug=True, host="localhost", port=5000)
+    print('Hello World')
